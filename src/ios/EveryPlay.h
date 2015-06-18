@@ -1,6 +1,8 @@
 #import <Cordova/CDV.h>
+#import <Cordova/CDVPlugin.h>
+#import <Foundation/Foundation.h>
 
-@interface EveryPlay : CDVPlugin
+@interface EveryPlay : CDVPlugin<EveryplayDelegate>
 
 - (void) loggedIn:(CDVInvokedUrlCommand*)command;
 
