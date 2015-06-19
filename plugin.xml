@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
-        id="com.plugin.everyplay"
-        version="0.1">
+        id="cordova-plugin-everyplay"
+        version="0.2">
 
   <name>Everyplay</name>
 
@@ -36,8 +36,30 @@
 
     <header-file src="src/ios/EveryPlay.h" target-dir="EveryPlay"/>
     <source-file src="src/ios/EveryPlay.m" target-dir="EveryPlay"/>
+
     <resource-file src="src/ios/Everyplay.bundle" />
     <framework src="src/ios/Everyplay.framework" custom="true"/>
+
+    <framework src="AdSupport.framework" />
+    <framework src="AssetsLibrary.framework" />
+    <framework src="AudioToolbox.framework" />
+    <framework src="AVFoundation.framework" />
+    <framework src="CoreGraphics.framework" />
+    <framework src="CoreImage.framework" />
+    <framework src="CoreMedia.framework" />
+    <framework src="CoreVideo.framework" />
+    <framework src="Foundation.framework" />
+    <framework src="MessageUI.framework" />
+    <framework src="MobileCoreServices.framework" />
+    <framework src="OpenGLES.framework" />
+    <framework src="QuartzCore.framework" />
+    <framework src="Security.framework" />
+    <framework src="Social.framework" />
+    <framework src="StoreKit.framework" />
+    <framework src="SystemConfiguration.framework" />
+    <framework src="Twitter.framework" />
+    <framework src="UIKit.framework" />
+
   </platform>
 
 </plugin>

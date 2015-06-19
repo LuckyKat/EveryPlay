@@ -1,6 +1,5 @@
 #import <Cordova/CDV.h>
-#import <Cordova/CDVPlugin.h>
-#import <Foundation/Foundation.h>
+#import <Everyplay/Everyplay.h>
 
 @interface EveryPlay : CDVPlugin<EveryplayDelegate>
 
