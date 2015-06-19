@@ -44,7 +44,7 @@ startRecording: function (successCallback, errorCallback) {
 },
     
 stopRecording: function (successCallback, errorCallback) {
-    cordova.exec(successCallback, errorCallback, "EveryPlay", "startRecording", []);
+    cordova.exec(successCallback, errorCallback, "EveryPlay", "stopRecording", []);
 },
  
 playLastRecording: function (successCallback, errorCallback) {
