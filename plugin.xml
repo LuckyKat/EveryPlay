@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
         id="cordova-plugin-everyplay"
-        version="0.2">
+        version="0.3">
 
   <name>Everyplay</name>
 
@@ -23,7 +23,218 @@
       </feature>
     </config-file>
 
+    <config-file target="AndroidManifest.xml" parent="/*">
+      <uses-feature android:glEsVersion="0x00020000" />
+      <uses-feature android:name="android.hardware.touchscreen" />
+      <uses-feature
+        android:name="android.hardware.touchscreen.multitouch"
+        android:required="false" />
+      <uses-feature
+        android:name="android.hardware.touchscreen.multitouch.distinct"
+        android:required="false" />
+
+      <uses-permission android:name="android.permission.WAKE_LOCK" />
+    </config-file>
+
+    <config-file target="AndroidManifest.xml" parent="/manifest/application">
+        <activity
+         android:name="com.everyplay.Everyplay.view.EveryplaySocialActivity" 
+           android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize"
+           android:theme="@android:style/Theme.NoTitleBar"
+           android:windowSoftInputMode="adjustResize"
+           android:screenOrientation="sensor"
+           android:hardwareAccelerated="true" />
+
+       <activity
+         android:name="com.everyplay.Everyplay.view.EveryplayTextInputActivity" 
+           android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize"
+           android:theme="@android:style/Theme.NoTitleBar"
+           android:windowSoftInputMode="stateVisible|adjustResize"
+           android:screenOrientation="sensor"
+           android:hardwareAccelerated="false" />
+       
+       <activity
+         android:name="com.everyplay.Everyplay.view.videoplayer.EveryplayVideoPlayerActivity"
+           android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize"
+           android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+           android:windowSoftInputMode="adjustResize"
+           android:screenOrientation="sensor"
+           android:hardwareAccelerated="true" />
+
+       <activity
+         android:name="com.everyplay.Everyplay.view.videoplayer.EveryplayVideoEditorActivity"
+           android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize"
+           android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+           android:windowSoftInputMode="adjustResize"
+           android:screenOrientation="sensor"
+           android:hardwareAccelerated="true" />
+
+       <activity
+         android:name="com.everyplay.Everyplay.view.EveryplaySharingModalActivity"
+           android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize"
+           android:theme="@style/EveryplaySharingModal"
+           android:windowSoftInputMode="adjustResize"
+           android:screenOrientation="sensor"
+           android:fitsSystemWindows="true"
+           android:hardwareAccelerated="true" />
+
+       <activity
+         android:name="com.everyplay.Everyplay.view.browser.EveryplayBrowserActivity"
+           android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize"
+           android:theme="@android:style/Theme.NoTitleBar"
+           android:windowSoftInputMode="adjustResize"
+           android:screenOrientation="sensor"
+           android:hardwareAccelerated="false" />
+       
+       <activity
+         android:name="com.everyplay.Everyplay.view.auth.EveryplayAuthActivity"
+           android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize"
+           android:theme="@android:style/Theme.NoTitleBar"
+           android:screenOrientation="sensor"
+           android:hardwareAccelerated="false"
+           android:windowSoftInputMode="adjustResize" />
+       
+       <activity
+         android:name="com.everyplay.Everyplay.view.auth.EveryplayAddConnectionActivity"
+           android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize"
+           android:theme="@android:style/Theme.Dialog"
+           android:hardwareAccelerated="false"
+           android:screenOrientation="sensor"
+           android:windowSoftInputMode="adjustResize" />
+       
+       <activity
+         android:name="com.everyplay.Everyplay.communication.socialnetworks.EveryplayFacebook"
+           android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize"
+           android:theme="@android:style/Theme.Dialog"
+           android:hardwareAccelerated="false"
+           android:screenOrientation="sensor"
+           android:windowSoftInputMode="adjustResize" />
+       
+       <service 
+           android:name="com.everyplay.Everyplay.communication.upload.EveryplayUploadService" />
+    </config-file>
+
     <source-file src="src/android/EveryPlay.java" target-dir="src/com/plugin/"/>
+
+    <!-- <source-file src="src/android/everyplay-android/libs/everyplay.jar" target-dir="libs"/>
+    <source-file src="src/android/everyplay-android/libs/armeabi-v7a/libeveryplay.so" target-dir="libs/armeabi-v7a"/>
+    <source-file src="src/android/everyplay-android/libs/x86/libeveryplay.so" target-dir="libs/x86"/>
+
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_action_list_cancel.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_action_list_destructive.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_action_list_option.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_browser_bottombar_bg.png" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_browser_bottombar_icon_back.png" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_browser_bottombar_icon_forward.png" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_browser_bottombar_icon_refresh.png" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_browser_bottombar_icon_share.png" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_browser_button_back.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_browser_button_forward.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_browser_button_refresh.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_browser_button_share.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_button_blue.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_button_green.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_button_shape.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_editor_button_background.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_editor_everyplay.png" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_editor_icon_trim.png" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_editor_icon_undo_trim.png" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_editor_processing_bg.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_editor_share.png" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_editor_trimmer_background_track.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_editor_trimmer_current_time_track.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_editor_trimmer_handle_pressed.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_editor_trimmer_handle.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_editor_trimmer_tracker_button_pressed.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_editor_trimmer_tracker_button.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_logo.png" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_progressbar_horizontal.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_sidemenu_button.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_splashscreen_logo.png" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_text_input_background.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_theme_button_background.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_theme_distinct_button_background.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_theme_sidemenu_background.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_theme_sidemenu_button.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_topbar_background.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_topbar_closebutton.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_topbar_icon_close_press.png" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_topbar_icon_close.png" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_topbar_icon_menu_press.png" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_topbar_icon_menu.png" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_topbar_menubutton.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_topbar_notification.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_video_bg_bottombar.png" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_video_bg_seekbar.png" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_video_buttonbar_button.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_video_control_button.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_video_endscreen_install_button.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_video_endscreen_thumb_play.png" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_video_facecam_bg.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_video_header_bg.png" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_video_header_install_button.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_video_icon_audio_commentary.png" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_video_icon_comment.png" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_video_icon_everyplay.png" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_video_icon_facecam.png" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_video_icon_hd_off.png" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_video_icon_hd_on.png" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_video_icon_like_active.png" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_video_icon_like.png" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_video_icon_pause_press.png" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_video_icon_pause.png" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_video_icon_play_press.png" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_video_icon_play.png" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_video_icon_replay_press.png" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_video_icon_replay.png" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_video_icon_settings.png" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_video_icon_share_small.png" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_video_timeline_current_time_track.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_video_timeline_stream_progress_track.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_video_timeline_tracker_button_pressed.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/everyplay-android/res/drawable/everyplay_video_timeline_tracker_button.xml" target-dir="res/drawable"/>
+
+    <source-file src="src/android/everyplay-android/res/layout/everyplay_action_list_button.xml" target-dir="res/layout"/>
+    <source-file src="src/android/everyplay-android/res/layout/everyplay_action_list.xml" target-dir="res/layout"/>
+    <source-file src="src/android/everyplay-android/res/layout/everyplay_auth_layout.xml" target-dir="res/layout"/>
+    <source-file src="src/android/everyplay-android/res/layout/everyplay_browser_bottombar.xml" target-dir="res/layout"/>
+    <source-file src="src/android/everyplay-android/res/layout/everyplay_browser_layout.xml" target-dir="res/layout"/>
+    <source-file src="src/android/everyplay-android/res/layout/everyplay_editor_buttons.xml" target-dir="res/layout"/>
+    <source-file src="src/android/everyplay-android/res/layout/everyplay_editor_playback_control.xml" target-dir="res/layout"/>
+    <source-file src="src/android/everyplay-android/res/layout/everyplay_editor_processing.xml" target-dir="res/layout"/>
+    <source-file src="src/android/everyplay-android/res/layout/everyplay_editor_trimmer.xml" target-dir="res/layout"/>
+    <source-file src="src/android/everyplay-android/res/layout/everyplay_sidemenu_button.xml" target-dir="res/layout"/>
+    <source-file src="src/android/everyplay-android/res/layout/everyplay_sidemenu_grouplabel.xml" target-dir="res/layout"/>
+    <source-file src="src/android/everyplay-android/res/layout/everyplay_sidemenu.xml" target-dir="res/layout"/>
+    <source-file src="src/android/everyplay-android/res/layout/everyplay_slimprogressbar.xml" target-dir="res/layout"/>
+    <source-file src="src/android/everyplay-android/res/layout/everyplay_social_layout.xml" target-dir="res/layout"/>
+    <source-file src="src/android/everyplay-android/res/layout/everyplay_social_topbar.xml" target-dir="res/layout"/>
+    <source-file src="src/android/everyplay-android/res/layout/everyplay_splashscreen.xml" target-dir="res/layout"/>
+    <source-file src="src/android/everyplay-android/res/layout/everyplay_text_input.xml" target-dir="res/layout"/>
+    <source-file src="src/android/everyplay-android/res/layout/everyplay_video_button_bar.xml" target-dir="res/layout"/>
+    <source-file src="src/android/everyplay-android/res/layout/everyplay_video_control_buttons.xml" target-dir="res/layout"/>
+    <source-file src="src/android/everyplay-android/res/layout/everyplay_video_endscreen_video.xml" target-dir="res/layout"/>
+    <source-file src="src/android/everyplay-android/res/layout/everyplay_video_endscreen.xml" target-dir="res/layout"/>
+    <source-file src="src/android/everyplay-android/res/layout/everyplay_video_error.xml" target-dir="res/layout"/>
+    <source-file src="src/android/everyplay-android/res/layout/everyplay_video_facecam.xml" target-dir="res/layout"/>
+    <source-file src="src/android/everyplay-android/res/layout/everyplay_video_header.xml" target-dir="res/layout"/>
+    <source-file src="src/android/everyplay-android/res/layout/everyplay_video_microphone.xml" target-dir="res/layout"/>
+    <source-file src="src/android/everyplay-android/res/layout/everyplay_video_timeline.xml" target-dir="res/layout"/>
+
+    <source-file src="src/android/everyplay-android/res/values/everyplay_attrs.xml" target-dir="res/values"/>
+    <source-file src="src/android/everyplay-android/res/values/everyplay_colors.xml" target-dir="res/values"/>
+    <source-file src="src/android/everyplay-android/res/values/everyplay_strings.xml" target-dir="res/values"/>
+    <source-file src="src/android/everyplay-android/res/values/everyplay_styles.xml" target-dir="res/values"/>
+    <source-file src="src/android/everyplay-android/res/values/everyplay_themes.xml" target-dir="res/values"/>
+
+    <source-file src="src/android/everyplay-android/res/values-ja/everyplay_strings.xml" target-dir="res/values-ja"/>
+
+    <source-file src="src/android/everyplay-android/res/values-ko/everyplay_strings.xml" target-dir="res/values-ko"/>
+
+    <source-file src="src/android/everyplay-android/res/values-zh-rCN/everyplay_strings.xml" target-dir="res/values-zh-rCN"/> -->
+
+
+
   </platform>
 
   <platform name="ios">

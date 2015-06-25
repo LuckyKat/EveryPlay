@@ -31,4 +31,24 @@
 
 - (void)snapshotRenderbuffer:(CDVInvokedUrlCommand*)command;
 
+- (void)resumeRecording:(CDVInvokedUrlCommand*)command;
+
+- (void)pauseRecording:(CDVInvokedUrlCommand*)command;
+
+- (void)isPaused:(CDVInvokedUrlCommand*)command;
+
+- (void)isDisableSingleCoreDevices:(CDVInvokedUrlCommand*)command;
+
+- (void)setDisableSingleCoreDevices:(CDVInvokedUrlCommand*)command;
+
+- (void)getLowMemoryDevice:(CDVInvokedUrlCommand*)command;
+
+- (void)setLowMemoryDevice:(CDVInvokedUrlCommand*)command;
+
+- (void)getMaxRecordingMinutesLength:(CDVInvokedUrlCommand*)command;
+
+- (void)setMaxRecordingMinutesLength:(CDVInvokedUrlCommand*)command;
+
+- (void)mergeSessionDeveloperData:(CDVInvokedUrlCommand*)command;
+
 @end

@@ -6,7 +6,7 @@
 - (void)pluginInitialize
 {
     NSLog(@"plugin initialize");
-    [Everyplay setClientId:@"95e54f06baa3c1048a602b1b0d154f0244160ded" clientSecret:@"ec753a5c167d43918ca11096d870134bde537b7a" redirectURI:@"https://m.everyplay.com/auth"];
+    [Everyplay setClientId:@"b459897317dc88c80b4515e380e1378022f874d2" clientSecret:@"f1a162969efb1c27aac6977f35b34127e68ee163" redirectURI:@"https://m.everyplay.com/auth"];
     
     // Tell Everyplay to use our rootViewController for presenting views and for delegate calls.
     [Everyplay initWithDelegate:self andParentViewController:self.viewController];
@@ -311,6 +311,111 @@
     [self.commandDelegate runInBackground:^{
         [[[Everyplay sharedInstance] capture] snapshotRenderbuffer];
     }];
+}
+
+- (void)resumeRecording:(CDVInvokedUrlCommand*)command
+{
+    NSLog(@"resume recording");
+    [self.commandDelegate runInBackground:^{
+        [[[Everyplay sharedInstance] capture] resumeRecording];
+    }];   
+}
+
+- (void)pauseRecording:(CDVInvokedUrlCommand*)command
+{
+    NSLog(@"pause recording");
+    [self.commandDelegate runInBackground:^{
+        [[[Everyplay sharedInstance] capture] pauseRecording];
+    }];  
+}
+
+- (void)isPaused:(CDVInvokedUrlCommand*)command
+{
+    NSLog(@"is pause");
+    [self.commandDelegate runInBackground:^{
+        NSString* callbackId = [command callbackId];
+        
+        CDVPluginResult* result = [CDVPluginResult
+                                   resultWithStatus:CDVCommandStatus_OK messageAsBool:([[[Everyplay sharedInstance] capture] isPaused])];
+        
+        [self.commandDelegate sendPluginResult:result callbackId:callbackId];
+    }];
+}
+
+- (void)isDisableSingleCoreDevices:(CDVInvokedUrlCommand*)command
+{
+    NSLog(@"is Disable Single Core Devices");
+    [self.commandDelegate runInBackground:^{
+        NSString* callbackId = [command callbackId];
+        
+        CDVPluginResult* result = [CDVPluginResult
+                                   resultWithStatus:CDVCommandStatus_OK messageAsBool:([[[Everyplay sharedInstance] capture] disableSingleCoreDevices])];
+        
+        [self.commandDelegate sendPluginResult:result callbackId:callbackId];
+    }];
+}
+
+- (void)setDisableSingleCoreDevices:(CDVInvokedUrlCommand*)command
+{
+    NSLog(@"set disable Single Core Devices");
+    [self.commandDelegate runInBackground:^{
+        BOOL isDisabled = [[command arguments] objectAtIndex:0];
+        [[[Everyplay sharedInstance] capture] setDisableSingleCoreDevices:isDisabled];
+    }];
+}
+
+- (void)getLowMemoryDevice:(CDVInvokedUrlCommand*)command
+{
+    NSLog(@"get Low Memory Device");
+    [self.commandDelegate runInBackground:^{
+        NSString* callbackId = [command callbackId];
+        
+        CDVPluginResult* result = [CDVPluginResult
+                                   resultWithStatus:CDVCommandStatus_OK messageAsBool:([[[Everyplay sharedInstance] capture] lowMemoryDevice])];
+        
+        [self.commandDelegate sendPluginResult:result callbackId:callbackId];
+    }];
+}
+
+- (void)setLowMemoryDevice:(CDVInvokedUrlCommand*)command
+{
+    NSLog(@"set Low Memory Device");
+    [self.commandDelegate runInBackground:^{
+        BOOL isOptimize = [[command arguments] objectAtIndex:0];
+        [[[Everyplay sharedInstance] capture] setLowMemoryDevice:isOptimize];
+    }];
+}
+
+- (void)getMaxRecordingMinutesLength:(CDVInvokedUrlCommand*)command
+{
+    NSLog(@"get Max Recording Minutes Length");
+    [self.commandDelegate runInBackground:^{
+        NSString* callbackId = [command callbackId];
+        
+        NSInteger minutes = [[[Everyplay sharedInstance] capture] maxRecordingMinutesLength];
+        CDVPluginResult* result = [CDVPluginResult
+                               resultWithStatus:CDVCommandStatus_OK messageAsInt:((int)minutes)];
+        
+        [self.commandDelegate sendPluginResult:result callbackId:callbackId];
+    }];
+}
+
+- (void)setMaxRecordingMinutesLength:(CDVInvokedUrlCommand*)command
+{
+    NSLog(@"set Max Recording Minutes Length");
+    [self.commandDelegate runInBackground:^{
+        NSNumber *minutes = [[command arguments] objectAtIndex:0];
+        [[[Everyplay sharedInstance] capture] setMaxRecordingMinutesLength:[minutes integerValue]];
+    }];
+}
+
+- (void)mergeSessionDeveloperData:(CDVInvokedUrlCommand*)command
+{
+    NSLog(@"merge Session Developer Data");
+    [self.commandDelegate runInBackground:^{
+        NSDictionary *data = [[command arguments] objectAtIndex:0];
+        [[Everyplay sharedInstance] mergeSessionDeveloperData:data];
+    }];   
 }
 
 @end
