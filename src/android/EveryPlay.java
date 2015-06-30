@@ -19,9 +19,9 @@ import android.util.Log;
 public class EveryPlay extends CordovaPlugin implements IEveryplayListener {
     
     public static final String TAG = "EveryPlay";
-    
-    private static String CLIENT_ID = "b459897317dc88c80b4515e380e1378022f874d2";
-    private static String CLIENT_SECRET = "f1a162969efb1c27aac6977f35b34127e68ee163";
+
+    private static String CLIENT_ID = "95e54f06baa3c1048a602b1b0d154f0244160ded";
+    private static String CLIENT_SECRET = "ec753a5c167d43918ca11096d870134bde537b7a";
     private static String REDIRECT_URI = "https://m.everyplay.com/auth";
     
     private CallbackContext callbackContext; 

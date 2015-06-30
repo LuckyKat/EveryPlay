@@ -6,7 +6,7 @@
 - (void)pluginInitialize
 {
     NSLog(@"plugin initialize");
-    [Everyplay setClientId:@"b459897317dc88c80b4515e380e1378022f874d2" clientSecret:@"f1a162969efb1c27aac6977f35b34127e68ee163" redirectURI:@"https://m.everyplay.com/auth"];
+    [Everyplay setClientId:@"95e54f06baa3c1048a602b1b0d154f0244160ded" clientSecret:@"ec753a5c167d43918ca11096d870134bde537b7a" redirectURI:@"https://m.everyplay.com/auth"];
     
     // Tell Everyplay to use our rootViewController for presenting views and for delegate calls.
     [Everyplay initWithDelegate:self andParentViewController:self.viewController];
